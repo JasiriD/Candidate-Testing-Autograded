@@ -81,9 +81,22 @@ function gradeQuiz(candidateAnswers) {
   grade = (answersCount/correctAnswers.length) * 100;
 
   //console.log(grade);
+
+  console.log(
+    `Your score: ${grade}\n
+    Required score: 80\n`
+    );
+
+    if(grade >= 80){
+      console.log(`Congradutaltions, you passed!`);
+    }
+    else{
+      console.log(`Sorry, but you did not pass.`);
+    }
+
   
   return grade;
-}
+};
 
 function runProgram() {
   askForName();
@@ -91,19 +104,7 @@ function runProgram() {
    console.log(`Hello ${candidateName}, it's time for your certification exam.`);
   askQuestion();
   gradeQuiz(this.candidateAnswers);
-
-  console.log(
-    `Your score: ${finalScore}\n
-    Required score: 80\n`
-    );
-
-    if(finalscore >= 80){
-      console.log(`Congradutaltions, you passed!`);
-    }
-    else{
-      console.log(`Sorry, but you did not pass.`);
-    }
-}
+};
 
 // ----------- Don't write any code or change any code below this line ---------- //
 module.exports = {
