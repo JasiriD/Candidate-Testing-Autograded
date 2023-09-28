@@ -4,9 +4,9 @@ const input = require('readline-sync');
 let questions = [];
 let correctAnswers = [];
 let candidateAnswers = [];
-let answersCount = 0;
 let candidateName = ``;
 let i1 = 0;
+let finalscore = 0;
 
 
 
@@ -39,86 +39,50 @@ let candidateAnswer = ``;
 function askForName() {
   // TODO 1.1b: Ask for candidate's name //
 
-  /*candidateName = input.question(`What is your name?`);
-  console.log(canpndidateName); This is code that does not work due to prompt/readline being noncompliant
-  I have replaced it with a placeholder and left it commented out*/
-
-  candidateName = `Joseph`
+  candidateName = input.question(`What is your name? `);
 }
 
 function askQuestion() {
   // TODO 1.2b: Ask candidate the question and assign the response as candidateAnswer //
 
-  while(i1 < 5){
-    candidateAnswer = input.question(questions[i1]);
-    correctAnswer = correctAnswers[i1];
-    //gradeQuiz(candidateAnswer);
-    if(candidateAnswer === correctAnswers[i1]){
-      console.log(`\nThat's correct, good job!`);
-      console.log(`\nCorrect answer: ${correctAnswer}\nYour answer: ${candidateAnswer}`);
-      candidateAnswers[i1] = candidateAnswer;
+  for(let i = 0; i < 5; i++){
+    candidateAnswer = input.question(questions[i]);
+    correctAnswer = correctAnswers[i];
+    if(candidateAnswer === correctAnswers[i]){
+      console.log(`\nTnohat's correct, good job!`);
+      console.log(`\nCorrect answer: ${correctAnswer}, Your answer: ${candidateAnswer}`);
+      candidateAnswers[i] = candidateAnswer;
 
     }
-    else if(candidateAnswer !== correctAnswers[i1]){
+    else if(candidateAnswer !== correctAnswers[i]){
       console.log(`\nSorry, but that's incorrect.`);
-      console.log(`\nCorrect answer: ${correctAnswer}\nYour answer: ${candidateAnswer}`);
-      candidateAnswers[i1] = candidateAnswer;
+      console.log(`\nCorrect answer: ${correctAnswer}, Your answer: ${candidateAnswer}`);
+      candidateAnswers[i] = candidateAnswer;
 
     }
-    i1++;
   }
-  gradeQuiz(candidateAnswers);
+  let finalscore = gradeQuiz(candidateAnswers);
 }
-
-/*function askQuestion() {
-  // TODO 1.2b: Ask candidate the question and assign the response as candidateAnswer //
-
-  let i1 = 0;
-  while(i1 < 5){
-    candidateAnswer = input.question(questions[i1]);
-    gradeQuiz(candidateAnswer);
-    if(candidateAnswer === candidateAnswers[i1]){
-        answersCount++;
-    }
-    i1++;
-  }
-}*/
-
 
 function gradeQuiz(candidateAnswers) {
 
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
 
-  
-  /*if(candidateAnswer === correctAnswer){
-    console.log(`\nThat's correct, good job!`);
-  }
-  else{
-    console.log(`\nSorry, but that's incorrect.`);
-  }*/
-
-  //console.log(`\nCorrect answer: ${correctAnswer}\nYour answer: ${candidateAnswer}`)
-
-  //Commented out due to not working
-
-  //---------------------------------------------------------------------------
-
   let grade;  //TODO 3.2 use this variable to calculate the candidates score.
 
-  answersCount = 0;
+  let answersCount = 0;
 
-  let i2 = 0;
-  while(i2 < 5){
-    if(candidateAnswers[i2] === correctAnswers[i2]){
+  for(let i = 0; i < correctAnswers.length; i++){
+    if(candidateAnswers[i].toLowerCase() === correctAnswers[i].toLowerCase()){
       answersCount++
-    }
+    };
+  };
 
-  grade = (answersCount/5) *100;
+  grade = (answersCount/correctAnswers.length) * 100;
 
-  console.log(grade);
+  //console.log(grade);
   
   return grade;
-  }
 }
 
 function runProgram() {
@@ -127,6 +91,18 @@ function runProgram() {
    console.log(`Hello ${candidateName}, it's time for your certification exam.`);
   askQuestion();
   gradeQuiz(this.candidateAnswers);
+
+  console.log(
+    `Your score: ${finalScore}\n
+    Required score: 80\n`
+    );
+
+    if(finalscore >= 80){
+      console.log(`Congradutaltions, you passed!`);
+    }
+    else{
+      console.log(`Sorry, but you did not pass.`);
+    }
 }
 
 // ----------- Don't write any code or change any code below this line ---------- //
