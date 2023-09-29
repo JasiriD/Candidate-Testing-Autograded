@@ -48,13 +48,13 @@ function askQuestion() {
   for(let i = 0; i < 5; i++){
     candidateAnswer = input.question(questions[i]);
     correctAnswer = correctAnswers[i];
-    if(candidateAnswer === correctAnswers[i]){
+    if(candidateAnswer.toLowerCase() === correctAnswers[i].toLowerCase()){
       console.log(`\nTnohat's correct, good job!`);
       console.log(`\nCorrect answer: ${correctAnswer}, Your answer: ${candidateAnswer}`);
       candidateAnswers[i] = candidateAnswer;
 
     }
-    else if(candidateAnswer !== correctAnswers[i]){
+    else if(candidateAnswer.toLowerCase() !== correctAnswers[i].toLowerCase()){
       console.log(`\nSorry, but that's incorrect.`);
       console.log(`\nCorrect answer: ${correctAnswer}, Your answer: ${candidateAnswer}`);
       candidateAnswers[i] = candidateAnswer;
